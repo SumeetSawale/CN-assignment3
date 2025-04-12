@@ -104,34 +104,34 @@ def run():
     
     net.pingAll()
     
-    # print("\nTesting connectivity (each test runs 3 times with 30s interval):")
+    print("\nTesting connectivity (each test runs 3 times with 30s interval):")
 
 
-    # print("a) Test communication to an external host from an internal host")
-    # for i in range(3):
-    #     result = h1.cmd('ping -c 4 10.0.0.6')
-    #     print(f"\n--- Test {i+1}/3: Ping h5 from h1 ---\n{result}")
-    # for i in range(3):
-    #     result = h2.cmd('ping -c 4 10.0.0.4')
-    #     print(f"\n--- Test {i+1}/3: Ping h3 from h2 ---\n{result}")
+    print("a) Test communication to an external host from an internal host")
+    for i in range(3):
+        result = h1.cmd('ping -c 4 10.0.0.6')
+        print(f"\n--- Test {i+1}/3: Ping h5 from h1 ---\n{result}")
+    for i in range(3):
+        result = h2.cmd('ping -c 4 10.0.0.4')
+        print(f"\n--- Test {i+1}/3: Ping h3 from h2 ---\n{result}")
 
 
-    # print("b) Test communication to an internal host from an external host")
-    # for i in range(3):
-    #     result = h8.cmd('ping -c 4 10.1.1.2')
-    #     print(f"\n--- Test {i+1}/3: Ping h1 from h8 ---\n{result}")
-    # for i in range(3):
-    #     result = h6.cmd('ping -c 4 10.1.1.3')
-    #     print(f"\n--- Test {i+1}/3: Ping h2 from h6 ---\n{result}")
+    print("b) Test communication to an internal host from an external host")
+    for i in range(3):
+        result = h8.cmd('ping -c 4 10.1.1.2')
+        print(f"\n--- Test {i+1}/3: Ping h1 from h8 ---\n{result}")
+    for i in range(3):
+        result = h6.cmd('ping -c 4 10.1.1.3')
+        print(f"\n--- Test {i+1}/3: Ping h2 from h6 ---\n{result}")
 
-    # print("c) Iperf tests: 3 tests of 120s each")
-    # h1.cmd('iperf3 -s -D')  # Start iperf3 server
-    # time.sleep(2)
-    # for i in range(3):
-    #     result = h6.cmd('iperf3 -c 10.1.1.2 -t 120')
-    #     print(f"\n--- iPerf3 Test {i+1}/3: h6 -> h1 ---\n{result}")
-    #     time.sleep(5)
-    # h1.cmd('pkill iperf3')
+    print("c) Iperf tests: 3 tests of 120s each")
+    h1.cmd('iperf3 -s -D')  # Start iperf3 server
+    time.sleep(2)
+    for i in range(3):
+        result = h6.cmd('iperf3 -c 10.1.1.2 -t 120')
+        print(f"\n--- iPerf3 Test {i+1}/3: h6 -> h1 ---\n{result}")
+        time.sleep(5)
+    h1.cmd('pkill iperf3')
 
     print("\n--- iPerf3 Test: h2 client -> h8 server ---\n")
     h8.cmd('iperf3 -s -D')
